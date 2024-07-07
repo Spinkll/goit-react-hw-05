@@ -1,0 +1,49 @@
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #1a1a1a;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 90%;
+  max-height: 90%;
+  overflow: auto;
+  outline: none; /* removes default focus outline */
+}
+
+.overlay {
+  background-color: rgba(0, 0, 0, 0.75);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.info {
+  margin-top: 10px;
+  color: #ffffff;
+}
+
+.closeBtn {
+  border: 2px solid white;
+  background-color: transparent;
+  color: #ffffff;
+  cursor: pointer;
+  margin-top: 10px;
+  font-size: 16px;
+}
+
+.closeBtn:hover {
+  color: #646cff;
+}
