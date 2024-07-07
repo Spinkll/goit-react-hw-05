@@ -1,0 +1,22 @@
+.reviewsContainer {
+  padding: 20px;
+}
+
+.reviewsList {
+  list-style: none;
+  padding: 0;
+}
+
+.reviewItem {
+  margin-bottom: 20px;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.reviewItem h4 {
+  margin: 0 0 10px;
+}
+
+.reviewItem p {
+  margin: 0;
+}

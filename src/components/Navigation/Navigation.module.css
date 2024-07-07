@@ -1,0 +1,22 @@
+.nav {
+  display: flex;
+  gap: 16px;
+  padding: 16px;
+  font-size: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.link {
+  color: black;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.link:hover {
+  color: #646cff;
+}
+
+.active {
+  color: #646cff;
+}
