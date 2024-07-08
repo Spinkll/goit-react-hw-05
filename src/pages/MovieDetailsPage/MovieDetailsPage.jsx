@@ -1,13 +1,6 @@
 import React, { useState, useEffect } from "react";
-import {
-  useParams,
-  Link,
-  Outlet,
-  useLocation,
-  useNavigate,
-} from "react-router-dom";
+import { useParams, Link, Outlet, useLocation } from "react-router-dom";
 import { fetchMovieDetails } from "../../movies-api";
-import styles from "./MoviedetailsPage.module.css";
 
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
@@ -15,10 +8,10 @@ const MovieDetailsPage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const location = useLocation();
-  const navigate = useNavigate();
+  const backLinkHref = location.state?.from ?? "/movies";
 
   useEffect(() => {
-    const loadMovieDetails = async () => {
+    const fetchDetails = async () => {
       try {
         const data = await fetchMovieDetails(movieId);
         setMovie(data);
@@ -28,20 +21,11 @@ const MovieDetailsPage = () => {
         setLoading(false);
       }
     };
-
-    loadMovieDetails();
+    fetchDetails();
   }, [movieId]);
 
-  const handleGoBack = () => {
-    if (location.state && location.state.from) {
-      navigate(location.state.from);
-    } else {
-      navigate("/");
-    }
-  };
-
   if (loading) {
-    return <p>Loading movie details...</p>;
+    return <p>Loading...</p>;
   }
 
   if (error) {
@@ -49,27 +33,25 @@ const MovieDetailsPage = () => {
   }
 
   return (
-    <div className={styles.movieDetails}>
-      <button onClick={handleGoBack} className={styles.goBackButton}>
-        Go back
-      </button>
+    <div>
+      <Link to={backLinkHref}>Go back</Link>
       {movie && (
         <>
           <h1>{movie.title}</h1>
-          <p>{movie.overview}</p>
           <img
             src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
             alt={movie.title}
           />
-          <nav className={styles.subNav}>
+          <p>{movie.overview}</p>
+          <nav>
             <ul>
               <li>
-                <Link to={`cast`} state={{ from: location.state?.from }}>
+                <Link to="cast" state={{ from: location.state?.from }}>
                   Cast
                 </Link>
               </li>
               <li>
-                <Link to={`reviews`} state={{ from: location.state?.from }}>
+                <Link to="reviews" state={{ from: location.state?.from }}>
                   Reviews
                 </Link>
               </li>
